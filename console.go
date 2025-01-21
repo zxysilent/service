@@ -17,9 +17,9 @@ type consoleLogger struct {
 }
 
 func init() {
-	ConsoleLogger.info = log.New(os.Stderr, "I: ", log.Ltime)
-	ConsoleLogger.warn = log.New(os.Stderr, "W: ", log.Ltime)
-	ConsoleLogger.err = log.New(os.Stderr, "E: ", log.Ltime)
+	ConsoleLogger.info = log.New(os.Stderr, "I: ", log.LstdFlags)
+	ConsoleLogger.warn = log.New(os.Stderr, "W: ", log.LstdFlags)
+	ConsoleLogger.err = log.New(os.Stderr, "E: ", log.LstdFlags)
 }
 
 func (c consoleLogger) Error(v ...interface{}) error {
