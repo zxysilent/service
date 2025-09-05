@@ -87,6 +87,8 @@ const (
 	optionLimitNOFILEDefault = -1 // -1 = don't set in configuration
 	optionRestart            = "Restart"
 
+	optionServiceExtends = "ServiceExtends"
+
 	optionSuccessExitStatus = "SuccessExitStatus"
 
 	optionSystemdScript = "SystemdScript"
@@ -271,6 +273,15 @@ func (kv KeyValue) string(name string, defaultValue string) string {
 func (kv KeyValue) float64(name string, defaultValue float64) float64 {
 	if v, found := kv[name]; found {
 		if castValue, is := v.(float64); is {
+			return castValue
+		}
+	}
+	return defaultValue
+}
+
+func (kv KeyValue) kvs(name string, defaultValue KeyValue) KeyValue {
+	if v, found := kv[name]; found {
+		if castValue, is := v.(KeyValue); is {
 			return castValue
 		}
 	}

@@ -172,6 +172,7 @@ func (s *systemd) Install() error {
 		SuccessExitStatus    string
 		LogOutput            bool
 		LogDirectory         string
+		ServiceExtends       KeyValue
 	}{
 		s.Config,
 		path,
@@ -183,6 +184,7 @@ func (s *systemd) Install() error {
 		s.Option.string(optionSuccessExitStatus, ""),
 		s.Option.bool(optionLogOutput, optionLogOutputDefault),
 		s.Option.string(optionLogDirectory, defaultLogDirectory),
+		s.Option.kvs(optionServiceExtends, KeyValue{}),
 	}
 
 	err = s.template().Execute(f, to)
@@ -305,6 +307,8 @@ ConditionFileIsExecutable={{.Path|cmdEscape}}
 {{$dep}} {{end}}
 
 [Service]
+{{range $k, $v := .ServiceExtends}} 
+{{$k}}={{$v}} {{end}}
 StartLimitInterval=5
 StartLimitBurst=10
 ExecStart={{.Path|cmdEscape}}{{range .Arguments}} {{.|cmd}}{{end}}
