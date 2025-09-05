@@ -1,5 +1,5 @@
-module github.com/kardianos/service
+module github.com/zxysilent/service
 
-go 1.16
+go 1.20
 
-require golang.org/x/sys v0.29.0
+require golang.org/x/sys v0.30.0

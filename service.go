@@ -18,7 +18,7 @@
 //	import (
 //		"log"
 //
-//		"github.com/kardianos/service"
+//		"github.com/zxysilent/service"
 //	)
 //
 //	var logger service.Logger

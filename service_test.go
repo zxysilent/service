@@ -9,7 +9,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/kardianos/service"
+	"github.com/zxysilent/service"
 )
 
 func TestRunInterrupt(t *testing.T) {
